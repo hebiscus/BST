@@ -53,3 +53,49 @@ function insert(root, key) {
     else
         prev.right = node;
 }
+
+//delete
+function deleteNode(root, key) {
+    if (root == null)
+        return root;
+
+    // Recursive calls for ancestors of node to be deleted
+    if (root.data > key) {
+        root.left = deleteNode(root.left, key);
+        return root;
+    } else if (root.data < key) {
+        root.right = deleteNode(root.right, key);
+        return root;
+    }
+
+    // If one of the children is empty
+    if (root.left == null) {
+        let temp = root.right;
+        return temp;
+    } else if (root.right == null) {
+        let temp = root.left;
+        return temp;
+    }
+
+    // If both children exist
+    else {
+      let succParent = root;
+        // Find successor
+      let succ = root.right;
+
+        while (succ.left != null) {
+            succParent = succ;
+            succ = succ.left;
+        }
+
+        if (succParent != root)
+            succParent.left = succ.right;
+        else
+            succParent.right = succ.right;
+
+        // Copy Successor Data to root
+        root.data = succ.data;
+
+        return root;
+    }
+}
