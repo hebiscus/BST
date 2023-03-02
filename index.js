@@ -143,3 +143,36 @@ function levelOrder(func, root) {
   }
   
 //   levelOrder(printNode, testTree.root);
+
+function preorder(root) {
+    if (root == null) {
+      return;
+    }
+    console.log(root);
+    preorder(root.left);
+    preorder(root.right);
+  }
+  
+  // preorder(testTree.root)
+  
+  function inorder(root) {
+    if (root == null) {
+      return;
+    }
+    inorder(root.left);
+    console.log(root);
+    inorder(root.right);
+  }
+  
+  // inorder(testTree.root)
+  
+  function postorder(root) {
+    if (root == null) {
+      return;
+    }
+    postorder(root.left);
+    postorder(root.right);
+    console.log(root);
+  }
+  
+  // postorder(testTree.root)
