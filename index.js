@@ -99,3 +99,47 @@ function deleteNode(root, key) {
         return root;
     }
 }
+
+function find(root, key) {
+    if (root == null) {
+        return "Value not found!"; 
+    } else if(root.data == key) {
+        return root;
+    } else if (root.data > key) {
+        root = find(root.left, key);
+    } else if (root.data < key) {
+        root = find(root.right, key);
+    } else {
+        console.log("something went really wrong....")
+    }
+  return root;
+}
+
+function levelOrder(func, root) {
+    if (root == null) {
+      return root;
+    }
+    let queue = [];
+    queue.push(root);
+    let finalArray = [];
+  
+    while (queue.length != 0) {
+      let current = queue[0];
+      finalArray.push(current);
+      if (current.left != null) {
+        queue.push(current.left);
+      }
+      if (current.right != null) {
+        queue.push(current.right);
+      }
+      // console.log(queue.shift());
+      queue.shift();
+    }
+    func(finalArray);
+  }
+  
+  function printNode(nodes) {
+    return nodes.forEach(node => console.log(node))
+  }
+  
+//   levelOrder(printNode, testTree.root);
