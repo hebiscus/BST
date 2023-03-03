@@ -176,3 +176,29 @@ function preorder(root) {
   }
   
   // postorder(testTree.root)
+
+  function height(root, node) {
+    let foundNode = find(root, node.data);
+    let leftCounter = 0;
+    let rightCounter = 0;
+    let queue = [];
+    queue.push(foundNode);
+  
+    while (queue.length != 0) {
+      let current = queue[0];
+      console.log(current)
+      if (current.left != null) {
+        queue.push(current.left);
+        leftCounter++
+      }
+      if (current.right != null) {
+        queue.push(current.right);
+        rightCounter++
+      }
+      queue.shift();
+    }
+    
+    return Math.max(leftCounter, rightCounter);
+  }
+
+  
