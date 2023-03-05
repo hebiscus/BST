@@ -201,4 +201,28 @@ function preorder(root) {
     return Math.max(leftCounter, rightCounter);
   }
 
+// console.log(height(testTree.root))
+
+  function depth(node, root) {
+    if (node == null || node == root) {
+      return 0;
+    }
+    let counter = 0;
+    let current = root;
   
+    while (current.data != node.data) {
+      if (current.data > node.data) {
+        current = current.left;
+        counter++
+      }
+      if (current.data < node.data) {
+        current = current.right;
+        counter++
+      }
+    }
+    return counter
+  }
+  
+  // checking only for data equality
+  // const depthNode = new Node(5);
+  // console.log(depth(depthNode, testTree.root));
